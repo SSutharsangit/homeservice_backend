@@ -18,14 +18,18 @@ class RatingController extends Controller
                 'serve_pro.provider_id',
                 'serve_pro.service_id',
                 'serve_pro.amount_per_hour',
+                'serve_pro.customer_id',
+                'users.name as customer',
                 'services.name as service_name',
                 'services.description as service_description',
-                'users.name as provider_name',
+                'provider_user.name as provider_name',
                 'service_types.name as service_type_name'
             )
             ->leftJoin('provider_services as serve_pro', 'serve_pro.id', '=', 'ratings.service_provider_id')
             ->leftJoin('providers', 'providers.id', '=', 'serve_pro.provider_id')
-            ->leftJoin('users', 'users.id', '=', 'providers.user_id')
+            ->leftJoin('customer', 'customer.id', '=', 'serve_pro.customer_id')
+            ->leftJoin('users as provider_user', 'provider_user.id', '=', 'providers.user_id')
+             ->leftJoin('users', 'users.id', '=', 'customer.user_id')
             ->leftJoin('services', 'services.id', '=', 'serve_pro.service_id')
             ->leftJoin('service_types', 'service_types.id', '=', 'services.service_type_id')
             ->get();
