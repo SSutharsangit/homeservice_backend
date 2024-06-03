@@ -33,14 +33,13 @@ class ServiceController extends Controller
             $providerService = DB::table('provider_services as serve_pro')
             ->select(
                 'serve_pro.provider_id',
+                 'services.img',
                 'serve_pro.service_id',
                 'serve_pro.amount_per_hour',
                 'services.name as service_name',
                 'services.description as service_description',
                 'users.name as provider_name',
                 'service_types.name as service_type_name',
-                'ratings.rating',
-                'ratings.feedback'
             )
             ->leftJoin('providers', 'providers.id', '=', 'serve_pro.provider_id')
             ->leftJoin('ratings', 'ratings.service_provider_id', '=', 'serve_pro.id')
