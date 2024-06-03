@@ -26,10 +26,6 @@ class ServiceController extends Controller
     // Get a Service by ID
     public function getAllByService($id)
     {
-        $Service = Service::findOrFail($id);
-
-        if($Service){
-
             $providerService = DB::table('provider_services as serve_pro')
             ->select(
                 'serve_pro.provider_id',
@@ -49,14 +45,6 @@ class ServiceController extends Controller
            -> where('service_id', $id)->get();
             return response()->json($providerService);
         }
-
-
-
-    }
-
-
-
-
     public function show($id)
     {
         $Service = Service::findOrFail($id);
