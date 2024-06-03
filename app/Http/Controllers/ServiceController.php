@@ -38,7 +38,7 @@ class ServiceController extends Controller
                 'service_types.name as service_type_name',
             )
             ->leftJoin('providers', 'providers.id', '=', 'serve_pro.provider_id')
-            ->leftJoin('ratings', 'ratings.service_provider_id', '=', 'serve_pro.id')
+            // ->leftJoin('ratings', 'ratings.service_provider_id', '=', 'serve_pro.id')
             ->leftJoin('users', 'users.id', '=', 'providers.user_id')
             ->leftJoin('services', 'services.id', '=', 'serve_pro.service_id')
             ->leftJoin('service_types', 'service_types.id', '=', 'services.service_type_id')
