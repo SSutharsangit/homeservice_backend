@@ -18,7 +18,7 @@ class RatingController extends Controller
                 'serve_pro.provider_id',
                 'serve_pro.service_id',
                 'serve_pro.amount_per_hour',
-                'serve_pro.customer_id',
+                'ratings.customer_id',
                 'users.name as customer',
                 'services.name as service_name',
                 'services.description as service_description',
