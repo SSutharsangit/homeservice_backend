@@ -16,7 +16,7 @@ class Rating extends Model
         "service_provider_id",
         "rating",
         "feedback",
-    "customer_id",
+    "customer_id"
 
     ];
     public function gig()
