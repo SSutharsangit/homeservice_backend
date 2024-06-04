@@ -15,7 +15,9 @@ class ProviderService extends Model
     protected $fillable = [
         "provider_id",
         "service_id",
-        "amount_per_hour"
+        "amount_per_hour",
+    "service_name",
+     "description",
     ];
     public function provider()
     {
