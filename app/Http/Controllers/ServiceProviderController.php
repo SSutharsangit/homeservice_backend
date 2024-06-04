@@ -57,6 +57,8 @@ class ServiceProviderController extends Controller
                 'ratings.id as id',
                 'ratings.rating',
                 'ratings.feedback',
+                'ratings.customer_id',
+                'user_customer_name.name',
                 'serve_pro.provider_id',
                 'serve_pro.service_id',
                 'serve_pro.amount_per_hour',
@@ -67,6 +69,8 @@ class ServiceProviderController extends Controller
             )
             ->leftJoin('provider_services as serve_pro', 'serve_pro.id', '=', 'ratings.service_provider_id')
             ->leftJoin('providers', 'providers.id', '=', 'serve_pro.provider_id')
+            ->leftJoin('customers', 'customers.id', '=', 'ratings.customer_id')
+            ->leftJoin('users as user_customer_name', 'user_customer_name.id', '=', 'customers.user_id') 
             ->leftJoin('users', 'users.id', '=', 'providers.user_id')
             ->leftJoin('services', 'services.id', '=', 'serve_pro.service_id')
             ->leftJoin('service_types', 'service_types.id', '=', 'services.service_type_id')
