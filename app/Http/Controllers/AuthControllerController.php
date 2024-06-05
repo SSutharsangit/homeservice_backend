@@ -58,7 +58,7 @@ if (Auth::attempt($credentials)) {
             ->select('customers.id AS customer_id', 'customers.user_id')
             ->leftJoin('users', 'users.id', '=', 'customers.user_id')
             ->where('customers.user_id', $userID)
-            ->orwhere(,users.status',"Active")
+            ->orwhere(,'users.status',"Active")
             ->first();
         return response()->json(['success! user' => $user, 'customer' => $customer], 200);
     }
@@ -68,7 +68,7 @@ if (Auth::attempt($credentials)) {
                 ->leftJoin('users', 'users.id', '=', 'providers.user_id')
                     ->select('providers.id', 'providers.user_id')
                     ->where('providers.user_id', $userID)
-                    ->orwhere(,users.status',"Active")
+                    ->orwhere(,'users.status',"Active")
                     ->first();
                 return response()->json(['success! user' => $user,'provider' =>  $provider], 200);
     }
