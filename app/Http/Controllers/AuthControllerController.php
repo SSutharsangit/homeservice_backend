@@ -46,7 +46,8 @@ class AuthControllerController extends Controller
             return response()->json('User deleted');
         }
     }
-   public function login(Request $request)
+  
+    public function login(Request $request)
     {
         $credentials = $request->only('user_name', 'password', 'role');
         if (Auth::attempt($credentials)) {
@@ -61,7 +62,7 @@ class AuthControllerController extends Controller
                     ->orwhere('users.status', "Active")->first();
                 return response()->json(['success! user' => $user, 'customer' => $customer], 200);
             }
-            if ($userID = "Provider") {
+            if ($userRole = "Provider") {
                 $provider = DB::table('providers')
                     ->select('providers.id AS provider_id', 'providers.user_id')
                     ->leftJoin('users', 'users.id', '=', 'providers.user_id')
@@ -74,7 +75,6 @@ class AuthControllerController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
     }
-
     // public function sendResetLinkEmail(Request $request)
     // {
     //     $this->validateEmail($request);
