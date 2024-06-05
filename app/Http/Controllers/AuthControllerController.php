@@ -46,8 +46,7 @@ class AuthControllerController extends Controller
             return response()->json('User deleted');
         }
     }
-
-    public function login(Request $request)
+ public function login(Request $request)
     {
         $credentials = $request->only('user_name', 'password', 'role');
 if (Auth::attempt($credentials)) {
@@ -62,18 +61,18 @@ if (Auth::attempt($credentials)) {
             ->first();
         return response()->json(['success! user' => $user, 'customer' => $customer], 200);
     }
-}
-            if ($userID = "Provider") {
+    if ($userID = "Provider") {
                 $provider = DB::table('providers')
                     ->select('providers.id', 'providers.user_id')
                     ->leftJoin('users', 'users.id', '=', 'providers.user_id')
                     ->where('providers.user_id', $userID)->first();
                 return response()->json(['success! user' => $user,'provider' =>  $provider], 200);
-            }
-        }
+    }
+        
 
         return response()->json(['error' => 'Unauthorized'], 401);
-    }
+    }}
+
 
     // public function sendResetLinkEmail(Request $request)
     // {
