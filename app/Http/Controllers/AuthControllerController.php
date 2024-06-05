@@ -50,16 +50,16 @@ class AuthControllerController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('user_name', 'password', 'role');
-
-        if (Auth::attempt($credentials)) {
+if (Auth::attempt($credentials)) {
     $user = Auth::user();
     $userID = $user->id;
     $userRole = $user->role; // Store the role in a separate variable
     if ($userRole === "Customer") { // Use === for strict comparison
         $customer = DB::table('customers')
-            ->select('customers.id', 'customers.user_id',)
+            ->select('customers.id AS customer_id', 'customers.user_id')
             ->leftJoin('users', 'users.id', '=', 'customers.user_id')
-            ->where('customers.user_id', $userID)->first();
+            ->where('customers.user_id', $userID)
+            ->first();
         return response()->json(['success! user' => $user, 'customer' => $customer], 200);
     }
 }
