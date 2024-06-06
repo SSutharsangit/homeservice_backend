@@ -28,6 +28,7 @@ class ServiceController extends Controller
     {
             $providerService = DB::table('provider_services as serve_pro')
             ->select(
+                'serve_pro.id',
                 'serve_pro.provider_id',
                  'services.img',
                 'serve_pro.service_id',
